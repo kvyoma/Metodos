@@ -42,11 +42,13 @@ u_futuro=np.zeros((n_t, n_x, n_y))
 
 #Primera iteracion 2 for y
 for i in range(1, n_x-1): 
-		u_presente[i] = u_inicial[i] + ((r**2.0)/2.0) * (u_inicial[i+1] - 2.0 * u_inicial[i] + u_inicial[i-1])
+	for j in range(1, n_y-1):
+		u_presente[i, j] = u_inicial[i, j] + ((r**2.0)/2.0) * (u_inicial[i+1, j+1] - 2.0 * u_inicial[i, j] + u_inicial[i-1, j-1])
 
 
 #Iteraciones 3 for t, x, y 
 for i in range(1, n_x-1):
-    u_futuro[i] = (2.0 * (1.0 - ((r**2.0)/2.0)))*u_presente[i] - u_pasado[i] + (((r**2.0)/2.0))*(u_presente[i+1] + u_presente[i-1])
-    u_pasado=u_presente.copy()
-    u_presente=u_futuro.copy()
+    for i in range(1, n_y-1):
+        u_futuro[i, j] = (2.0 * (1.0 - ((r**2.0)/2.0)))*u_presente[i, j] - u_pasado[i, j] + (((r**2.0)/2.0))*(u_presente[i+1, j+1] + u_presente[i-1, j-1])
+        u_pasado=u_presente.copy()
+        u_presente=u_futuro.copy()
