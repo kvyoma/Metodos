@@ -29,3 +29,13 @@ u_inicial=np.zeros((n_x, n_y))
 u_inicial[n_x/2][n_x/3]=-0.5
 
 r=(c*dt)/dx
+
+u_pasado=np.zeros((n_t, n_x, n_y))
+u_pasado[0] = 0.0;
+u_pasado[n_x-1] = 0.0;
+
+u_presente=np.zeros((n_t, n_x, n_y))
+u_presente[0] = 0.0;
+u_presente[n_x-1] = 0.0;
+
+u_futuro=np.zeros((n_t, n_x, n_y))
